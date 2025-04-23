@@ -1,15 +1,25 @@
 import requests
 
-WEATHER_URL  = 'https://wttr.in/{}?nqTM&lang=ru'
+WEATHER_URL = 'https://wttr.in/{}'
+
+WEATHER_PARAMS = {
+    'n': '',
+    'q': '',
+    'T': '',
+    'M': '',
+    'lang': 'ru',
+}
+
 OFFICE_NAMES = [
     'Лондон',
     'Шереметьево',
-    'Череповец'
+    'Череповец',
 ]
 
 
 def get_weather(place):
-    response = requests.get(WEATHER_URL .format(place))
+    url = WEATHER_URL.format(place)
+    response = requests.get(url, params=WEATHER_PARAMS)
     response.raise_for_status()
     return response.text
 
